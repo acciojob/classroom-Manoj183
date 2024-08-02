@@ -63,5 +63,6 @@ public class StudentRepository {
 
     public void deleteAllTeachers(){
         teacherMap.clear();
+        teacherStudentMapping.clear();
     }
 }
