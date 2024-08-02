@@ -7,15 +7,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StudentRepository {
 
-    private HashMap<String, Student> studentMap;
-    private HashMap<String, Teacher> teacherMap;
-    private HashMap<String, List<String>> teacherStudentMapping;
+    private HashMap<String, Student> studentMap = new HashMap<>();
+    private HashMap<String, Teacher> teacherMap = new HashMap<>();
+    private HashMap<String, List<String>> teacherStudentMapping = new HashMap<>();
 
-    public StudentRepository(){
-        this.studentMap = new HashMap<String, Student>();
-        this.teacherMap = new HashMap<String, Teacher>();
-        this.teacherStudentMapping = new HashMap<String, List<String>>();
-    }
 
     public void saveStudent(Student student){
         studentMap.put(student.getName(),student);
@@ -26,14 +21,10 @@ public class StudentRepository {
     }
 
     public void saveStudentTeacherPair(String student, String teacher){
-        if(studentMap.containsKey(student) && teacherMap.containsKey(teacher)){
             if(!teacherStudentMapping.containsKey(teacher)){
                 teacherStudentMapping.put(teacher,new ArrayList<>());
             }
             teacherStudentMapping.get(teacher).add(student);
-            // Teacher t = teacherMap.get(teacher);
-            // t.setNumberOfStudents(t.getNumberOfStudents()+1);
-        }
     }
 
     public Student findStudent(String student){
